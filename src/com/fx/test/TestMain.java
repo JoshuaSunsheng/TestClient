@@ -22,14 +22,16 @@ import com.fx.test.SymmtricCryptoUtil;
 public class TestMain {
 
 
-    private static String url = "http://mtest.dianpayer.com:8088/gateway.do";
+    private static String testUrl = "http://mtest.dianpayer.com:8088/gateway.do";
     //static String url1 = "https://m.dianpayer.com/gateway.do";
     static String url1 = "http://localhost:7000/gateway.do";
 
 
     public static void main(String[] args) throws IOException, GeneralSecurityException, JSONException {
     	//微信支付推送订单
-    	pushOrder();
+    	//pushOrder();
+    	//微信支付查询订单
+    	queryOrder();
 
        /* String partnerId = "999999000000011";
         String signKey = "12ejiofaioumghoaiuid";
@@ -146,7 +148,7 @@ public class TestMain {
      * @throws JSONException 
      */
     public static void pushOrder() throws JSONException, UnsupportedEncodingException, GeneralSecurityException {
-    	System.out.println ("abc");
+    	System.out.println ("pushOrder begin");
     	String partnerId = "111222333444555";
         String signKey = "99988888812121255544";
         String encKey = "111222333444555666777888";
@@ -178,9 +180,43 @@ public class TestMain {
                 outSb);
 
         System.out.println(outSb.toString());
-
     }
     
+    /**
+     * 微信支付测试系统接口
+     * 订单查询接口
+     * @throws GeneralSecurityException 
+     * @throws UnsupportedEncodingException 
+     * @throws JSONException 
+     */
+    public static void queryOrder() throws JSONException, UnsupportedEncodingException, GeneralSecurityException {
+    	System.out.println ("queryOrder begin");
+    	String partnerId = "111222333444555";
+        String signKey = "99988888812121255544";
+        String encKey = "111222333444555666777888";
+        String version = "2.1";
+        String serviceType = "queryOrder";
+          
+        /**
+         * 请求业务参数
+         */
+        Map<String, String> request = new HashMap<String, String>();
+      
+        request.put("orderId", System.currentTimeMillis()+"");
+        request.put("orderNo", System.currentTimeMillis()+"");
+        request.put("merchantId", "99911010019");
+    
+        StringBuilder outSb = new StringBuilder();
+        request(partnerId,
+                url1,
+                serviceType,
+                encKey,
+                signKey,
+                version,
+                request,
+                outSb);
+        System.out.println(outSb.toString());
+    }
 
     /**
      * 生成随机串
