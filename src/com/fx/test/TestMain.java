@@ -19,7 +19,7 @@ import com.fx.test.SymmtricCryptoUtil;
 
 public class TestMain {
 
-	static boolean isTest = true;
+	static boolean isTest = false;
 	private static String testUrl = "http://mtest.dianpayer.com:8088/gateway.do";
 	private static String testUrl1 = "http://localhost:7000/gateway.do";
 	static String scUrl1 = "https://app.dianpayer.com/gateway.do";
@@ -45,29 +45,30 @@ public class TestMain {
 //			signKey = "wxJzhWif2u91Mi1280pk1";
 //			encKey = "9asdf14qwe51636wxzf68123";
 //			merchantId = "900047550000160";
-			notifyUrl = "http://gw.3yzf.com/notifys/DianpayerWx21/BankNotify.aspx";
+			notifyUrl = "www.baidu.com";
+			//notifyUrl = "http://gw.3yzf.com/notifys/DianpayerWx21/BankNotify.aspx";
 			url1 = scUrl1;
-			partnerId = "075582134702815";
-			signKey = "adhlfj2P1Lgjilmiilwr";
-			encKey = "piuyklj1209865kzJiop1286";
-			merchantId = "900058400000169";
+			partnerId = "021888888888888";
+			signKey = "hyabcd2k1Lhj2lviil9s";
+			encKey = "1234kim5ty7895kzJiop3698";
+			merchantId = "900000000000255";
 		}
 
 		// 微信支付推送订单
-		//pushOrder(partnerId, signKey, encKey, merchantId, notifyUrl, url1);
+		pushOrder(partnerId, signKey, encKey, merchantId, notifyUrl, url1);
 		// 微信支付查询订单
 		//queryOrder(partnerId,signKey,encKey,merchantId,url1);
 
 		// 通知商户交易
-		notifyMerchant(partnerId,signKey,encKey,merchantId,notifyUrl);
+		//notifyMerchant(partnerId,signKey,encKey,merchantId,notifyUrl);
 
 		//3des解密
-		String src ="lGc5cefVKR6Rww78L9BvpMdJsaqfxt1AHjUVwNAPwuZpyRKqLBENBrC7Yds47Sobd3dBu9DcWwJ3xk8E+qvcJAaOTNx1ooylEvvqbcTfqsO3Zqw5jY3tFfkhxJfzpBUJGj3Pg7xEwZ+lYIFPFS0S/R8vZDNO4f4uTK/X4Qd3a9GTzrSYdswNtNHnWUR+J7jrjWoi8YYXfrt88zj8IUCgo65l3ik8Up7dZsj9fu3QdOSCYoYGTNO/dacTGG/6tND/xo/QRGRV+fHzYY/RKPSiOfGH5zX3vVtsRhwicWydECoGVuN/TluUiQbbldycBQbf";
+		//String src ="lGc5cefVKR6Rww78L9BvpMdJsaqfxt1AHjUVwNAPwuZpyRKqLBENBrC7Yds47Sobd3dBu9DcWwJ3xk8E+qvcJAaOTNx1ooylEvvqbcTfqsO3Zqw5jY3tFfkhxJfzpBUJGj3Pg7xEwZ+lYIFPFS0S/R8vZDNO4f4uTK/X4Qd3a9GTzrSYdswNtNHnWUR+J7jrjWoi8YYXfrt88zj8IUCgo65l3ik8Up7dZsj9fu3QdOSCYoYGTNO/dacTGG/6tND/xo/QRGRV+fHzYY/RKPSiOfGH5zX3vVtsRhwicWydECoGVuN/TluUiQbbldycBQbf";
 		//decrypt(src,"piuyklj1209865kzJiop1286");
 		
 		//3des加密
 		//{"merchantId":"900058400000169","merchantName":"pay","orderId":"20160515232303839945310001","amount":2,"orderNo":"2016051500012415","codeStr":"weixin://wxpay/bizpayurl?pr=VzPgpdw","tradeStatus":3,"errCode":"00","errCodeDes":"支付成功"};
-		src = "{\"merchantId\":\"900058400000169\",\"merchantName\":\"pay\",\"orderId\":\"20160515232303839945310001\",\"amount\":2,\"orderNo\":\"2016051500012415\",\"codeStr\":\"weixin://wxpay/bizpayurl?pr=VzPgpdw\",\"tradeStatus\":3,\"errCode\":\"00\",\"errCodeDes\":\"支付成功\"}";
+		//src = "{\"merchantId\":\"900058400000169\",\"merchantName\":\"pay\",\"orderId\":\"20160515232303839945310001\",\"amount\":2,\"orderNo\":\"2016051500012415\",\"codeStr\":\"weixin://wxpay/bizpayurl?pr=VzPgpdw\",\"tradeStatus\":3,\"errCode\":\"00\",\"errCodeDes\":\"支付成功\"}";
 		//encrypt(src,"piuyklj1209865kzJiop1286");
 		//test();
 		//计算签名
@@ -142,7 +143,12 @@ public class TestMain {
 		System.out.println(resultStr);
 		String tmp = decryptOrEncrypt(resultStr, encKey, true, "utf-8");
 		System.out.println(tmp);
-		treeMap.put("result_json", tmp);
+		// 当等于1时是通知交易
+		if (type == 1) {
+			treeMap.put("result_json", tmp);
+		} else {
+			treeMap.put("request_json", tmp);
+		}
 		treeMap.put("sign", getSignData(treeMap, signKey));
 		return HttpUtils.sendRequest(url, treeMap, outSb);
 	}
@@ -252,7 +258,7 @@ public class TestMain {
 		 */
 		Map<String, String> request = new HashMap<String, String>();
 
-		request.put("amount", "100");
+		request.put("amount", "1");
 		request.put("payType", "wx");
 		request.put("orderId", System.currentTimeMillis() + "");
 		request.put("businessTime", System.currentTimeMillis() + "");
