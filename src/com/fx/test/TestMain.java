@@ -3,29 +3,44 @@ package com.fx.test;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.fx.test.HttpUtils;
-import com.fx.test.MD5;
-import com.fx.test.SymmtricCryptoUtil;
-
 public class TestMain {
 
-	static boolean isTest = false;
-	private static String testUrl = "http://mtest.dianpayer.com:8088/gateway.do";
-	private static String testUrl1 = "http://localhost:7000/gateway.do";
-	static String scUrl1 = "https://app.dianpayer.com/gateway.do";
 
+	static boolean isTest = true;
+	//private static String testUrl = "http://mtest.dianpayer.com:8088/gateway.do";
+	private static String testUrl = "http://localhost:8099/gateway.do";
+//	private static String testUrl = "http://192.168.2.18:8081/gateway.do";
+	private static String testUrl1 = "http://localhost:7000/gateway.do";
+//	private static String testUrl1 = "http://192.168.2.18:8081/gateway.do";
+//	static String scUrl1 = "https://acqapp1.dianpayer.com/gateway.do";
+	static String scUrl1 = "http://localhost:8099/gateway.do";
+//
 	public static void main(String[] args) throws IOException,
 			GeneralSecurityException, JSONException {
+
+//		StaticTest test1 = new StaticTest();
+//		StaticTest test2 = new StaticTest();
+//
+//		System.out.println(test1.i++);
+//		System.out.println(test2.i);
+//
+//		System.out.println(new Date());
+//
+//		Properties p = System.getProperties();
+//		p.list(System.out);
+//		System.out.println("--- Memory Usage:");
+//		Runtime rt = Runtime.getRuntime();
+//		System.out.println("Total Memory = "
+//							+ rt.totalMemory()
+//							+  "Free Memrory = "
+//							+ rt.freeMemory());
+
 		String partnerId = "";
 		String signKey = "";
 		String encKey = "";
@@ -34,6 +49,16 @@ public class TestMain {
 		String url1 = "";
 
 		if (isTest) {
+			/*
+			* 测试二
+			* */
+//			notifyUrl = "https://www.baidu.com/";
+//			url1 = testUrl;
+//			partnerId = "021888888888888";
+//			signKey = "hyabcd2k1Lhj2lviil9s";
+//			encKey = "1234kim5ty7895kzJiop3698";
+//			merchantId = "900000000000255";
+
 			partnerId = "111222333444555";
 			signKey = "99988888812121255544";
 			encKey = "111222333444555666777888";
@@ -41,12 +66,7 @@ public class TestMain {
 			notifyUrl = "www.baidu.com";
 			url1 = testUrl;
 		} else {
-//			partnerId = "888222333777555";
-//			signKey = "wxJzhWif2u91Mi1280pk1";
-//			encKey = "9asdf14qwe51636wxzf68123";
-//			merchantId = "900047550000160";
-			notifyUrl = "www.baidu.com";
-			//notifyUrl = "http://gw.3yzf.com/notifys/DianpayerWx21/BankNotify.aspx";
+			notifyUrl = "https://www.baidu.com/";
 			url1 = scUrl1;
 			partnerId = "021888888888888";
 			signKey = "hyabcd2k1Lhj2lviil9s";
@@ -150,6 +170,7 @@ public class TestMain {
 			treeMap.put("request_json", tmp);
 		}
 		treeMap.put("sign", getSignData(treeMap, signKey));
+		System.out.println(url);
 		return HttpUtils.sendRequest(url, treeMap, outSb);
 	}
 
@@ -186,19 +207,21 @@ public class TestMain {
 	 * 测试系统接口 测试接口
 	 */
 	public static void test() {
-		Map<String, String> request = new HashMap<String, String>();
-		request.put("encoding", "utf-8");
-		request.put("partnerId", "123456123456789");
-		request.put("random", "979");
-		request.put("request_json", "/rlZt9RkL8s=");
-		request.put("service_type", "testCard");
-		request.put("sign", "bdb257d4b0e43af615f80842f9008200");
-		request.put("version", "2.1");
 
-		StringBuilder outSb = new StringBuilder();
-		HttpUtils.sendRequest(testUrl, request, outSb);
-
-		System.out.println(outSb.toString());
+//
+//		Map<String, String> request = new HashMap<String, String>();
+//		request.put("encoding", "utf-8");
+//		request.put("partnerId", "123456123456789");
+//		request.put("random", "979");
+//		request.put("request_json", "/rlZt9RkL8s=");
+//		request.put("service_type", "testCard");
+//		request.put("sign", "bdb257d4b0e43af615f80842f9008200");
+//		request.put("version", "2.1");
+//
+//		StringBuilder outSb = new StringBuilder();
+//		HttpUtils.sendRequest(testUrl, request, outSb);
+//
+//		System.out.println(outSb.toString());
 
 	}
 
@@ -238,6 +261,7 @@ public class TestMain {
 		System.out.println("notifyMerchant end:"+outSb.toString());
 	}
 
+	static String  prefix="result_json=";
 	/**
 	 * 微信支付测试系统接口 测试接口
 	 * 
@@ -258,20 +282,43 @@ public class TestMain {
 		 */
 		Map<String, String> request = new HashMap<String, String>();
 
-		request.put("amount", "1");
+		request.put("amount", "10");
 		request.put("payType", "wx");
+		request.put("payType", "jsPay");
 		request.put("orderId", System.currentTimeMillis() + "");
 		request.put("businessTime", System.currentTimeMillis() + "");
 		request.put("notifyUrl", notifyUrl);
-		request.put("orderDesc", "微信支付订单");
+		request.put("frontUrl", "https://m.dianpayer.com/wechat/index.htm");
+		request.put("orderDesc", "Echannell");
 		request.put("merchantId", merchantId);
 		request.put("merchantName", "微信机构");
 		StringBuilder outSb = new StringBuilder();
+		System.out.println(outSb.toString());
+		System.out.println("--------------------");
 
 		request(partnerId, url1, serviceType, encKey, signKey, version,
 				request, outSb, 0);
+		System.out.println("--------------------");
 
-		System.out.println(outSb.toString());
+		//System.out.println(outSb.toString());
+
+		String res = outSb.toString();
+		System.out.println("res:"+res);
+		String[] aa= res.split("&");
+		//解密报文
+		for(String b:aa){
+			int n=b.indexOf(prefix);
+			if(n!=-1){
+				String src =b.substring(n+prefix.length());
+				try {
+					System.out.println(SymmtricCryptoUtil.tDecryptBase64( encKey, src));
+					break;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 	}
 
 	/**
