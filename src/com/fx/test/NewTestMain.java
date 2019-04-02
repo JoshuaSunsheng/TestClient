@@ -1,5 +1,6 @@
 package com.fx.test;
 
+import com.gd.magic.util.StringUtil;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
 import org.json.JSONException;
@@ -10,7 +11,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class NewTestMain {
@@ -23,6 +26,7 @@ public class NewTestMain {
 //    private static String testUrl = "http://localhost:9087/new_gateway.do";
 //    private static String testUrl = "http://localhost:9087/v2/refund/normal";
     private static String testUrl = "http://localhost:9087/service/refund";
+//    private static String testUrl = "http://192.168.2.86:9087/service/refund";
 //    private static String testUrl = "http://localhost:9087/query/payment";
 //    private static String testUrl = "http://localhost:9087/bill/list4Buyer";
 //    private static String testUrl = "http://localhost:9087/bill/list";
@@ -33,7 +37,7 @@ public class NewTestMain {
 //    private static String testUrl = "http://180.168.215.67:8089/d/gateway/";
 //    private static String testUrl = "https://mastercard.mpay.cn/d/gateway/";
 //    private static String testUrl = "http://wx.dianpayer.com:8089/d/gateway/";
-    private static String testUrl1 = "http://localhost:7000/gateway.do";
+//    private static String testUrl1 = "http://localhost:7000/gateway.do";
     //	private static String testUrl1 = "http://192.168.2.18:8081/gateway.do";
 //    static String scUrl1 = "https://m.dianpayer.com/gateway.do";
 //    static String scUrl1 = "https://app.monkeysluck.com/gateway.do";
@@ -48,8 +52,13 @@ public class NewTestMain {
     //
     public static void main(String[] args) throws IOException,
             GeneralSecurityException, JSONException {
+        OuterPushOrder();
 
-//        long number1 = 3500;
+
+    }
+
+    public static void OuterPushOrder() throws JSONException, UnsupportedEncodingException, GeneralSecurityException, UnknownHostException {
+        //        long number1 = 3500;
 //        String str1 = String.format("%08d", number1);
 //
 //        System.out.println("java补空格后字符串的长度:"+String.format("%1$-35s","a").length());
@@ -126,10 +135,10 @@ public class NewTestMain {
 //            merchantId = "100000000080004";
 
             //900029000002554
-            partnerId = "900029000002554";
-            signKey = "CyVZmE9mtbNdhrStA8UH";
-            encKey = "6E12Dhbq9M7Fk3MhyfMZ6dmm";
-            merchantId = "900029000002554";
+//            partnerId = "900029000002554";
+//            signKey = "CyVZmE9mtbNdhrStA8UH";
+//            encKey = "6E12Dhbq9M7Fk3MhyfMZ6dmm";
+//            merchantId = "900029000002554";
 
             //新接口测试 N2
 //            partnerId = "100000000000000";
@@ -605,7 +614,7 @@ public class NewTestMain {
 //        request.put("payType", "wxAPP");
 //        request.put("payType", "wxBarCodePay");
 //        request.put("payType", "wxNativePay");
-        request.put("payType", "wxJsPay");
+//        request.put("payType", "wxJsPay");
 //        request.put("payType", "aliBarCodePay");
 //        request.put("payType", "aliJsPay");
 //        request.put("payType", "wxH5");
@@ -613,7 +622,7 @@ public class NewTestMain {
 //        request.put("payType", "aliWebPay");
 //        request.put("payType", "aliPayN");
 //		request.put("payType", "jsPay");
-//		request.put("payType", "kjPay");
+		request.put("payType", "kjPay");
 //		request.put("payType", "netPay");
         JSONObject json=new JSONObject();
         json.put("bankCode", "CMB");
@@ -626,9 +635,9 @@ public class NewTestMain {
 //        request.put("orderId", "demo" + System.currentTimeMillis()  + "");
 ////        request.put("orderId", "2915139115291431513911529143");
 //        request.put("businessTime", System.currentTimeMillis() + "");
-//        request.put("notifyUrl", notifyUrl);
-//        request.put("frontUrl", "https://m.dianpayer.com/wechat/index.htm");
-//        request.put("orderDesc", "Echannell");
+        request.put("notifyUrl", notifyUrl);
+        request.put("frontUrl", "https://m.dianpayer.com/wechat/index.htm");
+        request.put("orderDesc", "Echannell");
 //        request.put("merchantId", merchantId);
 ////        request.put("subMchId", "900029000000354");
 ////        request.put("openId", "oJxeIwIDaAuRRwr0_l0ZYKpbZL6w");
@@ -642,34 +651,31 @@ public class NewTestMain {
         //把请求参数打包成数组
         SortedMap<String, String> sParaTemp = new TreeMap<String, String>();
 
-//        sParaTemp.put("service", "qpay");
-//        sParaTemp.put("service", "qpay_confirm");
-//        sParaTemp.put("service", "withdrawAcc");
-//        sParaTemp.put("service", "qPayDirect");
-//        sParaTemp.put("service", "refund");
-//        sParaTemp.put("service", "v2_refund_normal");
-//        sParaTemp.put("service", "query");
 
-//        sParaTemp.put("input_charset", "UTF-8");
-//        sParaTemp.put("version", "N2");
-//        sParaTemp.put("partner",partnerId);
-//        sParaTemp.put("service", "push");
-//        sParaTemp.put("sign_type", "MD5");
-//        sParaTemp.put("amount", "1");
-//        sParaTemp.put("pay_type", request.get("payType"));
-//        sParaTemp.put("order_id", request.get("orderId"));
-//        sParaTemp.put("out_trade_no", request.get("orderId"));
-//        sParaTemp.put("business_time", "2017-12-07 15:35:00");
-//        sParaTemp.put("notify_url", request.get("notifyUrl"));
-//        sParaTemp.put("order_desc", request.get("orderDesc"));
-//        sParaTemp.put("merchant_id", partnerId);
-//        sParaTemp.put("openId", "oNuU61Az36DpCKEd3eyV1vo3VAMg");
-//        sParaTemp.put("sub_merchant_id", partnerId);
+        //新网支 - 新无卡 - 直接支付下单 - 收银台接口
+//        directPay(partnerId, request, sParaTemp);
+
+        //  新网支-新无卡 直接支付确认 收银台接口
+//        directPayConfirm(partnerId, request, sParaTemp, "demo1551417050710");
+
+        //  新网支-新无卡 协议支付认证 收银台接口
+//        agreementPayValidateAccount(partnerId, request, sParaTemp, "agreementPayValidateAccount");
+
+        //  新网支-新无卡 协议支付签约 收银台接口   6217001210092281920
+//        agreementPayBind(partnerId, request, sParaTemp, "agreementPayBind", "demo1551842018953", "182889");
+
+        //  新网支-新无卡 协议支付消费 收银台接口
+//        agreementPay(partnerId, request, sParaTemp, "agreementPay", "EP0000000129");
+
+        //  新网支-条码支付 收银台接口
+        barCodePay(partnerId, request, sParaTemp, "6226307700457293990");
+
+        //        request.put("mExtraMap", "{'subPayType':'directPay', 'name': '苏孙生', 'idNo':'350426199003043599', 'acc':'377155021512782', 'cvv':'427', 'validityDate':'1812', 'mobile':'13764610737', 'phoneNumber':'13764610737', 'bankCode': '305', 'feeRate': '0.55', 't0Fee':'100','smsCode':'412492', 'phoneToken':'ME20171117160919502497','settlementAcc':'6226097800343163','mchtFullName':'测试商户号','mchtName':'测试商户号','mchtAddress':'上海市普陀区江宁路111号','bankCode':'301','branchName':'上海建设银行北新泾支行','province':'上海市','city':'上海市', 'isCombine':'true'}");
 
 
-        //获取对账
+        //网支系统 获取对账 老网支接口
         //{"partner":"900029000002554","tradeType":"5","startDate":"20180601","endDate":"20180701","status":"1"}
-//        sParaTemp.put("input_charset", "UTF-8");
+//        sParaTemp.put("_input_charset", "UTF-8");
 //        sParaTemp.put("version", "N2");
 //        sParaTemp.put("partner",partnerId);
 ////        sParaTemp.put("service", ""); //对账文件获取
@@ -680,56 +686,26 @@ public class NewTestMain {
 //        sParaTemp.put("end_date", "20180701");
 //        sParaTemp.put("status", "1");
 
-//        查询数据状态：
-//        1：成功
-//        2：处理中
-//        3：处理失败
-//        4：关闭
 
-
-//        request|192.168.222.16|Mozilla/5.0 (Windows NT 6.2; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0|sign=498aa9f199991049a9c861435185f5a2|_input_charset=utf-8|page=1|status=completed |sign_type=MD5|fromdate=20180601|todate=20180701|partner=900029000000354|
-//退款查询
-//        sParaTemp.put("input_charset", "UTF-8");
-//        sParaTemp.put("version", "N2");
-//        sParaTemp.put("partner",partnerId);
-//        sParaTemp.put("fromdate", "20180601");
-//        sParaTemp.put("todate", "20180701");
-//        sParaTemp.put("status", "completed");
-//        sParaTemp.put("page", "1");
-
-//        request|192.168.222.16|Mozilla/5.0 (Windows NT 6.2; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0|sign=498aa9f199991049a9c861435185f5a2|_input_charset=utf-8|page=1|status=completed |sign_type=MD5|fromdate=20180601|todate=20180701|partner=900029000000354|
-//交易查询
-//        sParaTemp.put("input_charset", "UTF-8");
-//        sParaTemp.put("version", "N2");
-//        sParaTemp.put("partner",partnerId);
-//        sParaTemp.put("fromdate", "20180501");
-//        sParaTemp.put("todate", "20180502");
-//        sParaTemp.put("status", "completed");
-//        sParaTemp.put("page", "1");
-
-
-//        sParaTemp.put("amount", request.get("amount"));
-//        sParaTemp.put("amount", "0.01");
-//        sParaTemp.put("order_id", request.get("orderId"));
-//        sParaTemp.put("out_trade_no", request.get("orderId"));
-//        sParaTemp.put("order_id", "n20180426000006");
-//        sParaTemp.put("merchant_id", request.get("merchantId"));
-//        sParaTemp.put("pay_type", request.get("payType"));
-
-//        sParaTemp.put("old_order_id", "demo1527857317685");
-
-
-        //refund
-        sParaTemp.put("input_charset", "UTF-8");
+        //网支系统退款 refund 老网支接口
+/*        sParaTemp.put("input_charset", "UTF-8");
         sParaTemp.put("partner",partnerId);
         sParaTemp.put("sign_type", "MD5");
-        sParaTemp.put("amount", "101");
+        sParaTemp.put("amount", "0.01");
         sParaTemp.put("return_type", "json");
-        sParaTemp.put("out_trade_no",  System.currentTimeMillis() + "");
-//        sParaTemp.put("out_trade_no",  "1538278052804");
+        sParaTemp.put("out_trade_no",   getOrderNoByAtomic("") );
+//        sParaTemp.put("out_trade_no",  "1542865900721"); //System.currentTimeMillis()+ ""
         sParaTemp.put("merchant_id", request.get("merchantId"));
 //        sParaTemp.put("orig_out_trade_no", "00370003378291801800605160187100"); //netBank
-        sParaTemp.put("orig_out_trade_no", "2018060114615570");
+//        sParaTemp.put("orig_out_trade_no", "2018060114615570");
+//        sParaTemp.put("orig_out_trade_no", "00370003378291801800605160187100");
+        ArrayList aa = new ArrayList();
+        aa.add("2018060114615570");
+        aa.add("00370003378291801800605160187100");
+        Random rnd = new Random();
+        int bb = rnd.nextInt(2);
+        sParaTemp.put("orig_out_trade_no", (String) aa.get(bb));*/
+
 
         //query
 //        sParaTemp.put("input_charset", "UTF-8");
@@ -747,27 +723,6 @@ public class NewTestMain {
 //        sParaTemp.put("order_desc", request.get("orderDesc"));
 //        sParaTemp.put("sub_merchant_id", "99911010019");
 
-//        {"subject":"充值"," apptype":"2",
-//                "appname": "王者荣耀",
-//                "appid": "com.tencent.tmgp.sgame"}
-//        sParaTemp.put("appType", "2");
-//        sParaTemp.put("appName", "王者荣耀");
-//        sParaTemp.put("appId", "com.tencent.tmgp.sgame");
-//        sParaTemp.put("returnUrl", request.get("frontUrl"));
-//        sParaTemp.put("authCode", "134712434080196798");
-
-
-
-//        sParaTemp.put("order_id", "demo1523241615697");
-//        sParaTemp.put("check_code", "123456");
-
-
-//信用卡提现
-/*
-//        sParaTemp.put("nbkno", "");
-//        sParaTemp.put("name", "");
-//        sParaTemp.put("bank_acc", "");
-*/
 
 
 
@@ -809,6 +764,135 @@ public class NewTestMain {
 //            }
 //        }
 
+    }
+
+    private static void barCodePay(String partnerId, Map<String, String> request, SortedMap<String, String> sParaTemp,  String authCode) {
+        sParaTemp.put("service", "barCodePay");
+        sParaTemp.put("_input_charset", "UTF-8");
+        sParaTemp.put("partner", partnerId);
+        sParaTemp.put("sign_type", "MD5");
+        sParaTemp.put("amount", "1");
+        sParaTemp.put("order_id", "demo" + System.currentTimeMillis() + "");
+        sParaTemp.put("business_time", "2017-12-07 15:35:00");
+        sParaTemp.put("notify_url", request.get("notifyUrl"));
+        sParaTemp.put("order_desc", request.get("orderDesc"));
+        sParaTemp.put("merchant_id", partnerId);
+//        {"subject":"充值"," apptype":"2",
+//                "appname": "王者荣耀",
+//                "appid": "com.tencent.tmgp.sgame"}
+//        sParaTemp.put("appType", "2");
+//        sParaTemp.put("appName", "王者荣耀");
+//        sParaTemp.put("appId", "com.tencent.tmgp.sgame");
+        //        request.put("payType", "wxBarCodePay");
+//        sParaTemp.put("pay_type", "wxNativePay");
+//        sParaTemp.put("pay_type", "aliBarCodePay");
+        sParaTemp.put("pay_type", "unionBarCodePay");
+        sParaTemp.put("authCode", authCode);
+    }
+
+    private static void directPayConfirm(String partnerId, Map<String, String> request, SortedMap<String, String> sParaTemp, String order_id) {
+        sParaTemp.put("service", "directPayConfirm");
+        sParaTemp.put("_input_charset", "UTF-8");
+        sParaTemp.put("partner",partnerId);
+        sParaTemp.put("merchant_id", partnerId);
+
+        sParaTemp.put("sign_type", "MD5");
+        sParaTemp.put("amount", "1");
+//        sParaTemp.put("order_id", "demo1548664293456");
+        sParaTemp.put("order_id", order_id);
+        sParaTemp.put("business_time", "2017-12-07 15:35:00");
+        sParaTemp.put("notify_url", request.get("notifyUrl"));
+        sParaTemp.put("order_desc", request.get("orderDesc"));
+        sParaTemp.put("name", "苏孙生");
+        sParaTemp.put("id_no", "350426199003043599");
+        sParaTemp.put("acc", "6212261001076259461");
+        sParaTemp.put("mobile", "13764610737");
+        sParaTemp.put("sms_code", "975831");
+    }
+
+    private static void directPay(String partnerId, Map<String, String> request, SortedMap<String, String> sParaTemp) {
+        sParaTemp.put("service", "directPay");
+        sParaTemp.put("_input_charset", "UTF-8");
+        sParaTemp.put("partner",partnerId);
+        sParaTemp.put("sign_type", "MD5");
+        sParaTemp.put("amount", "1");
+        sParaTemp.put("order_id", "demo" + System.currentTimeMillis()+ "");
+        sParaTemp.put("business_time", "2017-12-07 15:35:00");
+        sParaTemp.put("notify_url", request.get("notifyUrl"));
+        sParaTemp.put("order_desc", request.get("orderDesc"));
+        sParaTemp.put("merchant_id", partnerId);
+
+//        直接支付触发短信-成功-作为“直接支付”原交易
+//        1、测试场景：作为“直接支付”原交易
+//        2、操作步骤：
+//        1）手输中国银联测试专用卡IT02卡号：6224243000000011
+//        2）输入身份证件信息：310115197803261111，持卡人姓名：com，手机号：13222222222
+//        3）金额：5000.03元
+//        4）选择触发短信验证码，系统发起交易
+//        sParaTemp.put("name", "com");
+//        sParaTemp.put("id_no", "310115197803261111");
+//        sParaTemp.put("acc", "6224243000000011");
+//        sParaTemp.put("mobile", "13222222222");
+        sParaTemp.put("name", "苏孙生");
+        sParaTemp.put("id_no", "350426199003043599");
+//        sParaTemp.put("acc", getEncode("6226097800343163")); //招商
+//        sParaTemp.put("acc", getEncode("6212261001076259461"));   //工商
+        sParaTemp.put("acc", getEncode("6217001210092281920")); //建设
+        sParaTemp.put("bank_code", "105");//建设
+        sParaTemp.put("mobile", "13764610737");
+    }
+
+    public static void agreementPayBind(String partnerId, Map<String, String> request, SortedMap<String, String> sParaTemp, String opt, String orig_out_trade_no, String smsCode) {
+        agreementPayValidateAccount(partnerId, request, sParaTemp, opt);
+        sParaTemp.put("sms_code", smsCode);
+        sParaTemp.put("orig_out_trade_no", orig_out_trade_no);
+    }
+
+    private static void agreementPayValidateAccount(String partnerId, Map<String, String> request, SortedMap<String, String> sParaTemp, String opt) {
+        sParaTemp.put("service", opt);
+        sParaTemp.put("_input_charset", "UTF-8");
+        sParaTemp.put("partner",partnerId);
+        sParaTemp.put("sign_type", "MD5");
+        sParaTemp.put("merchant_id", partnerId);
+//        1、测试场景：作为“协议支付”第一笔原交易。2、操作步骤：
+//        1）手输中国银联测试专用卡IT05卡号：6212143000000000037
+//        2）输入军官证信息：00111208，持卡人姓名：俹燚揞，手机号：13222222222
+//        3）金额可选上送，若上送金额=100
+//        sParaTemp.put("name", getEncode("com"));
+//        sParaTemp.put("id_no", getEncode("310115197803261111"));
+//        sParaTemp.put("acc", getEncode("6212143000000000037"));
+//        sParaTemp.put("mobile", getEncode("13222222222"));
+
+        sParaTemp.put("name", getEncode("苏孙生"));
+        sParaTemp.put("id_no", getEncode("350426199003043599"));
+//        sParaTemp.put("acc", getEncode("6226097800343163")); //招商
+//        sParaTemp.put("bank_code", "102");//工商
+//        sParaTemp.put("acc", getEncode("6212261001076259461"));   //工商
+        //        sParaTemp.put("bank_code", "105");//建设
+//        sParaTemp.put("acc", getEncode("6217001210092281920")); //建设
+
+        sParaTemp.put("bank_code", "305");//民生
+        sParaTemp.put("acc", getEncode("6226190202039008"));   //民生
+        sParaTemp.put("mobile", getEncode("13764610737"));
+        sParaTemp.put("out_trade_no", "demo" + System.currentTimeMillis()+ "");
+    }
+
+    private static String getEncode(String data){
+        return StringUtil.bytesToHexStr(DesUtil.desEncode(data, "VntassPfhRL9HCKO5ExOIrrt"));
+    }
+
+    private static void agreementPay(String partnerId, Map<String, String> request, SortedMap<String, String> sParaTemp, String opt, String signNo) {
+        sParaTemp.put("service", opt);
+        sParaTemp.put("_input_charset", "UTF-8");
+        sParaTemp.put("partner",partnerId);
+        sParaTemp.put("out_trade_no","agreementPay" + System.currentTimeMillis()+ "");
+        sParaTemp.put("business_time", "2017-12-07 15:35:00");
+        sParaTemp.put("notify_url", request.get("notifyUrl"));
+        sParaTemp.put("order_desc", request.get("orderDesc"));
+        sParaTemp.put("sign_type", "MD5");
+        sParaTemp.put("merchant_id", partnerId);
+        sParaTemp.put("amount", "1");
+        sParaTemp.put("sign_no", signNo);
     }
 
     //get eNett map
@@ -900,6 +984,23 @@ public class NewTestMain {
         request(partnerId, url1, serviceType, encKey, signKey, version,
                 request, outSb, 0);
         System.out.println(outSb.toString());
+    }
+
+    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+    private static final AtomicInteger atomicInteger = new AtomicInteger(1000000);
+
+    /**
+     * 获取同一秒钟 生成的订单号连续
+     *
+     * @param no
+     *            数据中心编号
+     * @return 同一秒内订单连续的编号
+     */
+    public static synchronized String getOrderNoByAtomic(String no) {
+        atomicInteger.getAndIncrement();
+        int i = atomicInteger.get();
+        String date = simpleDateFormat.format(new Date());
+        return no + date + i;
     }
 
     /**

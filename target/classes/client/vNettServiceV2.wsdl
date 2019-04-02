@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="vNettServiceV2" targetNamespace="https://www.enett.com/services/2013/11"
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="https://www.enett.com/services/2013/11"
+xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:i0="http://www.enett.com/services/vnett/2013/11"
+xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasisopen.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsp:Policy wsu:Id="BasicHttpBinding_IvNettServiceV2_policy">
+<wsp:ExactlyOne>
+<wsp:All>
+<sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+<wsp:Policy>
+<sp:TransportToken>
+<wsp:Policy>
+<sp:HttpsToken RequireClientCertificate="false"/>
+</wsp:Policy>
+</sp:TransportToken>
+<sp:AlgorithmSuite>
+<wsp:Policy>
+<sp:Basic256/>
+</wsp:Policy>
+</sp:AlgorithmSuite>
+<sp:Layout>
+<wsp:Policy>
+<sp:Strict/>
+</wsp:Policy>
+</sp:Layout>
+</wsp:Policy>
+</sp:TransportBinding>
+</wsp:All>
+</wsp:ExactlyOne>
+</wsp:Policy>
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://www.enett.com/services/2013/11">
+<xs:element name="IssueVAN">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q1="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="issueVANRequest" nillable="true" type="q1:IssueVANRequest"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="IssueVANResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q2="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="IssueVANResult" nillable="true" type="q2:IssueVANResponse"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="AmendVAN">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q3="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="amendVANRequest" nillable="true" type="q3:AmendVANRequest"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="AmendVANResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q4="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="AmendVANResult" nillable="true" type="q4:AmendVANResponse"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CancelVAN">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q5="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="cancelVANRequest" nillable="true" type="q5:CancelVANRequest"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CancelVANResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q6="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="CancelVANResult" nillable="true" type="q6:CancelVANResponse"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CloseVAN">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q7="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="closeVANRequest" nillable="true" type="q7:CloseVANRequest"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CloseVANResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q8="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="CloseVANResult" nillable="true" type="q8:CloseVANResponse"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetVANDetails">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q9="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="getVANRequest" nillable="true" type="q9:GetVANRequest"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetVANDetailsResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q10="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="GetVANDetailsResult" nillable="true" type="q10:GetVANResponse"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetFxQuote">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q11="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="getVNettFxQuoteRequest" nillable="true" type="q11:GetFxQuoteRequest"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetFxQuoteResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q12="https://www.enett.com/services/messages/2013/11" minOccurs="0" name="GetFxQuoteResult" nillable="true" type="q12:GetFxQuoteResponse"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/">
+<xs:element name="anyType" nillable="true" type="xs:anyType"/>
+<xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+<xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+<xs:element name="boolean" nillable="true" type="xs:boolean"/>
+<xs:element name="byte" nillable="true" type="xs:byte"/>
+<xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+<xs:element name="decimal" nillable="true" type="xs:decimal"/>
+<xs:element name="double" nillable="true" type="xs:double"/>
+<xs:element name="float" nillable="true" type="xs:float"/>
+<xs:element name="int" nillable="true" type="xs:int"/>
+<xs:element name="long" nillable="true" type="xs:long"/>
+<xs:element name="QName" nillable="true" type="xs:QName"/>
+<xs:element name="short" nillable="true" type="xs:short"/>
+<xs:element name="string" nillable="true" type="xs:string"/>
+<xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+<xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+<xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+<xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+<xs:element name="char" nillable="true" type="tns:char"/>
+<xs:simpleType name="char">
+<xs:restriction base="xs:int"/>
+</xs:simpleType>
+<xs:element name="duration" nillable="true" type="tns:duration"/>
+<xs:simpleType name="duration">
+<xs:restriction base="xs:duration">
+<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+<xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+<xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="guid" nillable="true" type="tns:guid"/>
+<xs:simpleType name="guid">
+<xs:restriction base="xs:string">
+<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:attribute name="FactoryType" type="xs:QName"/>
+<xs:attribute name="Id" type="xs:ID"/>
+<xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://www.enett.com/services/messages/2013/11" elementFormDefault="qualified" targetNamespace="https://www.enett.com/services/messages/2013/11">
+<xs:complexType name="IssueVANRequest">
+<xs:sequence>
+<xs:element name="IntegratorCode" nillable="true" type="xs:string"/>
+<xs:element name="IntegratorAccessKey" nillable="true" type="xs:string"/>
+<xs:element name="RequesterEcn" type="xs:int"/>
+<xs:element name="MessageDigest" nillable="true" type="xs:string"/>
+<xs:element name="ActivationDate" nillable="true" type="xs:string"/>
+<xs:element name="CardTypeName" nillable="true" type="xs:string"/>
+<xs:element name="CountryCode" nillable="true" type="xs:string"/>
+<xs:element name="CurrencyCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ExpiryDate" nillable="true" type="xs:string"/>
+<xs:element name="IntegratorReference" nillable="true" type="xs:string"/>
+<xs:element name="IsInstantAuthRequired" type="xs:boolean"/>
+<xs:element minOccurs="0" name="IsMultiUse" type="xs:boolean"/>
+<xs:element name="IssuedToEcn" type="xs:int"/>
+<xs:element name="MaximumAuthorisationAmount" type="xs:long"/>
+<xs:element minOccurs="0" name="MerchantCategoryCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="MerchantCategoryName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Allow3ds" nillable="true" type="xs:boolean"/>
+<xs:element name="MinimumAuthorisationAmount" type="xs:long"/>
+<xs:element minOccurs="0" name="MultiUseClosePercentage" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Username" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="FundingCurrencyCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="FxRate" nillable="true" type="xs:decimal"/>
+<xs:element minOccurs="0" name="QuoteKey" nillable="true" type="xs:string"/>
+<xs:element name="UserReferences" nillable="true" type="tns:UserReferenceCollection"/>
+<xs:element name="RCNAlias" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="AccountId" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="Channel" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="IssueVANRequest" nillable="true" type="tns:IssueVANRequest"/>
+<xs:complexType name="UserReferenceCollection">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="UserReference" nillable="true" type="tns:UserReference"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="UserReferenceCollection" nillable="true" type="tns:UserReferenceCollection"/>
+<xs:complexType name="UserReference">
+<xs:sequence>
+<xs:element name="Identifier" nillable="true" type="xs:string"/>
+<xs:element name="Value" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="UserReference" nillable="true" type="tns:UserReference"/>
+<xs:complexType name="IssueVANResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean"/>
+<xs:element minOccurs="0" name="ErrorCode" type="xs:int"/>
+<xs:element minOccurs="0" name="ErrorDescription" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SupportLogId" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ActivationDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CardHolderName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CardSecurityCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ExpiryDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="FullExpiryDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="GenerationDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="VNettTransactionID" type="xs:int"/>
+<xs:element minOccurs="0" name="VirtualAccountNumber" nillable="true" type="xs:string"/>
+<xs:element name="MinimumAuthorisationAmount" type="xs:long"/>
+<xs:element name="MaximumAuthorisationAmount" type="xs:long"/>
+<xs:element minOccurs="0" name="FundedAmount" type="xs:long"/>
+<xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="FundingCurrencyCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="FxRate" nillable="true" type="xs:decimal"/>
+<xs:element name="RCNAlias" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="RCNDescription" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SafetyMargin" type="xs:decimal"/>
+<xs:element minOccurs="0" name="AccountId" nillable="true" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="IssueVANResponse" nillable="true" type="tns:IssueVANResponse"/>
+<xs:complexType name="AmendVANRequest">
+<xs:sequence>
+<xs:element name="IntegratorCode" nillable="true" type="xs:string"/>
+<xs:element name="IntegratorAccessKey" nillable="true" type="xs:string"/>
+<xs:element name="RequesterEcn" type="xs:int"/>
+<xs:element name="MessageDigest" nillable="true" type="xs:string"/>
+<xs:element name="ActivationDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ExpiryDate" nillable="true" type="xs:string"/>
+<xs:element name="IntegratorReference" nillable="true" type="xs:string"/>
+<xs:element name="IsInstantAuthRequired" type="xs:boolean"/>
+<xs:element minOccurs="0" name="IsMultiUse" type="xs:boolean"/>
+<xs:element name="IssuedToEcn" type="xs:int"/>
+<xs:element name="MaximumAuthorisationAmount" type="xs:long"/>
+<xs:element minOccurs="0" name="MerchantCategoryCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="MerchantCategoryName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Allow3ds" nillable="true" type="xs:boolean"/>
+<xs:element name="MinimumAuthorisationAmount" type="xs:long"/>
+<xs:element minOccurs="0" name="MultiUseClosePercentage" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Username" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="FundingCurrencyCode" nillable="true" type="xs:string"/>
+<xs:element name="UserReferences" nillable="true" type="tns:UserReferenceCollection"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="AmendVANRequest" nillable="true" type="tns:AmendVANRequest"/>
+<xs:complexType name="AmendVANResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean"/>
+<xs:element minOccurs="0" name="ErrorCode" type="xs:int"/>
+<xs:element minOccurs="0" name="ErrorDescription" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SupportLogId" nillable="true" type="xs:string"/>
+<xs:element name="ActivationDate" nillable="true" type="xs:string"/>
+<xs:element name="ExpiryDate" nillable="true" type="xs:string"/>
+<xs:element name="FullExpiryDate" nillable="true" type="xs:string"/>
+<xs:element name="VNettTransactionID" type="xs:int"/>
+<xs:element name="CardSecurityCode" nillable="true" type="xs:string"/>
+<xs:element name="FxRate" nillable="true" type="xs:decimal"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="AmendVANResponse" nillable="true" type="tns:AmendVANResponse"/>
+<xs:complexType name="CancelVANRequest">
+<xs:sequence>
+<xs:element name="IntegratorCode" nillable="true" type="xs:string"/>
+<xs:element name="IntegratorAccessKey" nillable="true" type="xs:string"/>
+<xs:element name="RequesterEcn" type="xs:int"/>
+<xs:element name="MessageDigest" nillable="true" type="xs:string"/>
+<xs:element xmlns:q1="http://www.enett.com/services/vnett/2010/09" name="CancelReason" type="q1:CancelReasonType"/>
+<xs:element minOccurs="0" name="IntegratorReference" nillable="true" type="xs:string"/>
+<xs:element name="IssuedToEcn" type="xs:int"/>
+<xs:element minOccurs="0" name="Username" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CancelVANRequest" nillable="true" type="tns:CancelVANRequest"/>
+<xs:complexType name="CancelVANResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean"/>
+<xs:element minOccurs="0" name="ErrorCode" type="xs:int"/>
+<xs:element minOccurs="0" name="ErrorDescription" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SupportLogId" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="VNettTransactionID" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CancelVANResponse" nillable="true" type="tns:CancelVANResponse"/>
+<xs:complexType name="CloseVANRequest">
+<xs:sequence>
+<xs:element name="IntegratorCode" nillable="true" type="xs:string"/>
+<xs:element name="IntegratorAccessKey" nillable="true" type="xs:string"/>
+<xs:element name="RequesterEcn" type="xs:int"/>
+<xs:element name="MessageDigest" nillable="true" type="xs:string"/>
+<xs:element name="IntegratorReference" nillable="true" type="xs:string"/>
+<xs:element name="IssuedToEcn" type="xs:int"/>
+<xs:element minOccurs="0" name="Username" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CloseVANRequest" nillable="true" type="tns:CloseVANRequest"/>
+<xs:complexType name="CloseVANResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean"/>
+<xs:element minOccurs="0" name="ErrorCode" type="xs:int"/>
+<xs:element minOccurs="0" name="ErrorDescription" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SupportLogId" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="VNettTransactionID" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CloseVANResponse" nillable="true" type="tns:CloseVANResponse"/>
+<xs:complexType name="GetVANRequest">
+<xs:sequence>
+<xs:element name="IntegratorCode" nillable="true" type="xs:string"/>
+<xs:element name="IntegratorAccessKey" nillable="true" type="xs:string"/>
+<xs:element name="RequesterEcn" type="xs:int"/>
+<xs:element name="MessageDigest" nillable="true" type="xs:string"/>
+<xs:element name="IntegratorReference" nillable="true" type="xs:string"/>
+<xs:element name="VirtualAccountNumber" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Username" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="GetVANRequest" nillable="true" type="tns:GetVANRequest"/>
+<xs:complexType name="GetVANResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean"/>
+<xs:element minOccurs="0" name="ErrorCode" type="xs:int"/>
+<xs:element minOccurs="0" name="ErrorDescription" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SupportLogId" nillable="true" type="xs:string"/>
+<xs:element name="ActivationDate" nillable="true" type="xs:string"/>
+<xs:element name="CardHolderName" nillable="true" type="xs:string"/>
+<xs:element name="CardSecurityCode" nillable="true" type="xs:string"/>
+<xs:element name="CardType" nillable="true" type="xs:string"/>
+<xs:element name="Country" nillable="true" type="xs:string"/>
+<xs:element name="Currency" nillable="true" type="xs:string"/>
+<xs:element name="FullExpiryDate" nillable="true" type="xs:string"/>
+<xs:element name="IntegratorReference" nillable="true" type="xs:string"/>
+<xs:element name="IsMultiUse" type="xs:boolean"/>
+<xs:element name="IssuedToECN" type="xs:int"/>
+<xs:element name="MaximumAuthorisationAmount" type="xs:long"/>
+<xs:element name="MerchantCategoryCode" nillable="true" type="xs:string"/>
+<xs:element name="MerchantCategoryName" nillable="true" type="xs:string"/>
+<xs:element name="MinimumAuthorisationAmount" type="xs:long"/>
+<xs:element name="Notes" nillable="true" type="xs:string"/>
+<xs:element name="RequesterECN" type="xs:int"/>
+<xs:element name="TotalAuthorisedAmount" type="xs:long"/>
+<xs:element name="TotalRefundedAmount" type="xs:long"/>
+<xs:element name="TotalSettledAmount" type="xs:long"/>
+<xs:element name="VNettTransactionID" type="xs:int"/>
+<xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/eNett.PublicServices.vNett.Host.ViewModels.v2" name="VanHistoryCollection" nillable="true" type="q2:VanHistoryCollection"/>
+<xs:element name="VirtualAccountNumber" nillable="true" type="xs:string"/>
+<xs:element name="MultiClosePercentage" type="xs:decimal"/>
+<xs:element name="IsFunded" type="xs:boolean"/>
+<xs:element name="FundedCurrencyCode" nillable="true" type="xs:string"/>
+<xs:element name="FxRate" type="xs:decimal"/>
+<xs:element name="FundedAmount" type="xs:long"/>
+<xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/eNett.PublicServices.vNett.Host.ViewModels.v2" name="FxHistoryCollection" nillable="true" type="q3:FxHistoryCollection"/>
+<xs:element name="AvailableBalance" type="xs:decimal"/>
+<xs:element name="UserReferences" nillable="true" type="tns:UserReferenceCollection"/>
+<xs:element name="NetSettledAmount" type="xs:decimal"/>
+<xs:element name="OutstandingAuthorisations" type="xs:decimal"/>
+<xs:element name="RcnAlias" nillable="true" type="xs:string"/>
+<xs:element name="RCNDescription" nillable="true" type="xs:string"/>
+<xs:element name="FxFee" type="xs:decimal"/>
+<xs:element minOccurs="0" name="CardExpiryDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SafetyMargin" type="xs:decimal"/>
+<xs:element minOccurs="0" name="Channel" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="GetVANResponse" nillable="true" type="tns:GetVANResponse"/>
+<xs:complexType name="VanHistory">
+<xs:sequence>
+<xs:element name="DateTime" nillable="true" type="xs:string"/>
+<xs:element name="ActivityType" nillable="true" type="xs:string"/>
+<xs:element name="User" nillable="true" type="xs:string"/>
+<xs:element name="Currency" nillable="true" type="xs:string"/>
+<xs:element name="Amount" type="xs:long"/>
+<xs:element name="Details" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SubActivityType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="UnderReview" nillable="true" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="VanHistory" nillable="true" type="tns:VanHistory"/>
+<xs:complexType name="FxHistory">
+<xs:sequence>
+<xs:element name="DateTime" nillable="true" type="xs:string"/>
+<xs:element name="User" nillable="true" type="xs:string"/>
+<xs:element name="SellCurrencyCode" nillable="true" type="xs:string"/>
+<xs:element name="BuyCurrencyCode" nillable="true" type="xs:string"/>
+<xs:element name="SellAmount" type="xs:long"/>
+<xs:element name="BuyAmount" type="xs:long"/>
+<xs:element name="Rate" type="xs:decimal"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="FxHistory" nillable="true" type="tns:FxHistory"/>
+<xs:complexType name="GetFxQuoteRequest">
+<xs:sequence>
+<xs:element name="IntegratorCode" nillable="true" type="xs:string"/>
+<xs:element name="IntegratorAccessKey" nillable="true" type="xs:string"/>
+<xs:element name="RequesterECN" type="xs:int"/>
+<xs:element name="MessageDigest" nillable="true" type="xs:string"/>
+<xs:element name="ClientEcn" type="xs:int"/>
+<xs:element minOccurs="0" name="Username" nillable="true" type="xs:string"/>
+<xs:element name="BuyCurrency" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SellCurrency" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="GetFxQuoteRequest" nillable="true" type="tns:GetFxQuoteRequest"/>
+<xs:complexType name="GetFxQuoteResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean"/>
+<xs:element minOccurs="0" name="ErrorCode" type="xs:int"/>
+<xs:element minOccurs="0" name="ErrorDescription" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SupportLogId" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Rate" type="xs:decimal"/>
+<xs:element minOccurs="0" name="QuoteKey" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="GetFxQuoteResponse" nillable="true" type="tns:GetFxQuoteResponse"/>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.enett.com/services/vnett/2010/09" elementFormDefault="qualified" targetNamespace="http://www.enett.com/services/vnett/2010/09">
+<xs:simpleType name="CancelReasonType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="BookingCancelled">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="BookingAmended">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="DuplicateRequest">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ErrorInOriginalRequest">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="CreditLimitUpdateFailed">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="MaximumToleranceExceeded">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="FundingFailed">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="FraudulentUse">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="PossibleFraudulentUse">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="CancelReasonType" nillable="true" type="tns:CancelReasonType"/>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/eNett.PublicServices.vNett.Host.ViewModels.v2" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/eNett.PublicServices.vNett.Host.ViewModels.v2">
+<xs:complexType name="VanHistoryCollection">
+<xs:sequence>
+<xs:element xmlns:q1="https://www.enett.com/services/messages/2013/11" minOccurs="0" maxOccurs="unbounded" name="VanHistory" nillable="true" type="q1:VanHistory"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="VanHistoryCollection" nillable="true" type="tns:VanHistoryCollection"/>
+<xs:complexType name="FxHistoryCollection">
+<xs:sequence>
+<xs:element xmlns:q2="https://www.enett.com/services/messages/2013/11" minOccurs="0" maxOccurs="unbounded" name="FxHistory" nillable="true" type="q2:FxHistory"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="FxHistoryCollection" nillable="true" type="tns:FxHistoryCollection"/>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="IvNettServiceV2_IssueVAN_InputMessage">
+<wsdl:part name="parameters" element="tns:IssueVAN"/>
+</wsdl:message>
+<wsdl:message name="IvNettServiceV2_IssueVAN_OutputMessage">
+<wsdl:part name="parameters" element="tns:IssueVANResponse"/>
+</wsdl:message>
+<wsdl:message name="IvNettServiceV2_AmendVAN_InputMessage">
+<wsdl:part name="parameters" element="tns:AmendVAN"/>
+</wsdl:message>
+<wsdl:message name="IvNettServiceV2_AmendVAN_OutputMessage">
+<wsdl:part name="parameters" element="tns:AmendVANResponse"/>
+</wsdl:message>
+<wsdl:message name="IvNettServiceV2_CancelVAN_InputMessage">
+<wsdl:part name="parameters" element="tns:CancelVAN"/>
+</wsdl:message>
+<wsdl:message name="IvNettServiceV2_CancelVAN_OutputMessage">
+<wsdl:part name="parameters" element="tns:CancelVANResponse"/>
+</wsdl:message>
+<wsdl:message name="IvNettServiceV2_CloseVAN_InputMessage">
+<wsdl:part name="parameters" element="tns:CloseVAN"/>
+</wsdl:message>
+<wsdl:message name="IvNettServiceV2_CloseVAN_OutputMessage">
+<wsdl:part name="parameters" element="tns:CloseVANResponse"/>
+</wsdl:message>
+<wsdl:message name="IvNettServiceV2_GetVANDetails_InputMessage">
+<wsdl:part name="parameters" element="tns:GetVANDetails"/>
+</wsdl:message>
+<wsdl:message name="IvNettServiceV2_GetVANDetails_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetVANDetailsResponse"/>
+</wsdl:message>
+<wsdl:message name="IvNettServiceV2_GetFxQuote_InputMessage">
+<wsdl:part name="parameters" element="tns:GetFxQuote"/>
+</wsdl:message>
+<wsdl:message name="IvNettServiceV2_GetFxQuote_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetFxQuoteResponse"/>
+</wsdl:message>
+<wsdl:portType name="IvNettServiceV2">
+<wsdl:operation name="IssueVAN">
+<wsdl:input wsaw:Action="IssueVANRequest" message="tns:IvNettServiceV2_IssueVAN_InputMessage"/>
+<wsdl:output wsaw:Action="IssueVANResponse" message="tns:IvNettServiceV2_IssueVAN_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AmendVAN">
+<wsdl:input wsaw:Action="AmendVANRequest" message="tns:IvNettServiceV2_AmendVAN_InputMessage"/>
+<wsdl:output wsaw:Action="AmendVANResponse" message="tns:IvNettServiceV2_AmendVAN_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CancelVAN">
+<wsdl:input wsaw:Action="CancelVANRequest" message="tns:IvNettServiceV2_CancelVAN_InputMessage"/>
+<wsdl:output wsaw:Action="CancelVANResponse" message="tns:IvNettServiceV2_CancelVAN_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CloseVAN">
+<wsdl:input wsaw:Action="CloseVANRequest" message="tns:IvNettServiceV2_CloseVAN_InputMessage"/>
+<wsdl:output wsaw:Action="CloseVANResponse" message="tns:IvNettServiceV2_CloseVAN_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetVANDetails">
+<wsdl:input wsaw:Action="GetVANRequest" message="tns:IvNettServiceV2_GetVANDetails_InputMessage"/>
+<wsdl:output wsaw:Action="GetVANResponse" message="tns:IvNettServiceV2_GetVANDetails_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetFxQuote">
+<wsdl:input wsaw:Action="GetFxQuoteRequest" message="tns:IvNettServiceV2_GetFxQuote_InputMessage"/>
+<wsdl:output wsaw:Action="GetFxQuoteResponse" message="tns:IvNettServiceV2_GetFxQuote_OutputMessage"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="BasicHttpBinding_IvNettServiceV2" type="tns:IvNettServiceV2">
+<wsp:PolicyReference URI="#BasicHttpBinding_IvNettServiceV2_policy"/>
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="IssueVAN">
+<soap:operation soapAction="IssueVANRequest" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="AmendVAN">
+<soap:operation soapAction="AmendVANRequest" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="CancelVAN">
+<soap:operation soapAction="CancelVANRequest" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="CloseVAN">
+<soap:operation soapAction="CloseVANRequest" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetVANDetails">
+<soap:operation soapAction="GetVANRequest" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetFxQuote">
+<soap:operation soapAction="GetFxQuoteRequest" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="vNettServiceV2">
+<wsdl:port name="BasicHttpBinding_IvNettServiceV2" binding="tns:BasicHttpBinding_IvNettServiceV2">
+<soap:address location="https://enett-demo.com/vNettService/vNettServiceV2.svc/RS"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
