@@ -7,14 +7,32 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
-import java.util.TimeZone;
+import java.util.*;
 
 
 @SuppressWarnings("ALL")
 public class PrivateTestMain {
         public static void main(String [] args){
-            Singleton singleton = Singleton.getInstance();
+
+//            Singleton singleton = Singleton.getInstance();
+
+            ArrayList<Integer> arrayList = new ArrayList<Integer>();
+            arrayList.add(-1);
+            arrayList.add(3);
+            arrayList.add(3);
+            arrayList.add(-5);
+
+            Collections.sort(arrayList);
+            System.out.println(arrayList);
+            Collections.sort(arrayList, new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+//                    return o2.compareTo(o1);
+                    return o1.compareTo(o2);
+                }
+            });
+            System.out.println(arrayList);
+
         }
 
 

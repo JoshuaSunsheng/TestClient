@@ -1,10 +1,7 @@
 package com.fx.test;
 
-import com.gd.magic.util.StringUtil;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang.StringUtils;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -19,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class SnapPayTestMain {
 
 
-    static boolean isTest = true;
+    static boolean isTest = false;
 //    private static String testUrl = "http://wx.dianpayer.com/gateway.do";
 //    private static String testUrl = "http://localhost:9088/gateway.do";
 //    private static String testUrl = "http://localhost:9089/gateway.do";
@@ -120,6 +117,12 @@ public class SnapPayTestMain {
             encKey = "rkf0fPQFOHmEBFbreiMjXhIi";
             merchantId = "900010000018964";
 
+//            //snappay snappay
+            partnerId = "900010000020906";
+            signKey = "wkNmHDbiDvHZw7YpsYXV";
+            encKey = "rkf0fPQFOHmEBFbreiMjXhIi";
+            merchantId = "900010000020906";
+
 
             //snappay 安大略大学
 //            partnerId = "900010000018650";
@@ -137,18 +140,6 @@ public class SnapPayTestMain {
         // 通知商户交易
         //notifyMerchant(partnerId,signKey,encKey,merchantId,notifyUrl);
 
-    }
-
-    /**
-     * @param src
-     * @throws IOException
-     * @throws GeneralSecurityException
-     * @throws JSONException
-     */
-    public static void md5Encode(String src) throws IOException,
-            GeneralSecurityException, JSONException {
-        String tmp = MD5.md5Encode(src, "utf-8");
-        System.out.println(tmp);
     }
 
     /**
@@ -254,34 +245,6 @@ public class SnapPayTestMain {
         return builder.substring(0, end);
     }
 
-    public static String getSignData(TreeMap<String, String> treeMap,
-                                     String signKey) {
-        Set<String> keySet = treeMap.keySet();
-        StringBuilder sb = new StringBuilder();
-        for (String key : keySet) {
-            if (!key.equalsIgnoreCase("sign")) {
-                String value = treeMap.get(key);
-                if (StringUtils.isNotBlank(value)){
-                    sb.append(key).append("=").append(value).append("&");
-                }
-            }
-        }
-//        sb.append(signKey);
-        String str = sb.toString();
-        if(treeMap.get("version") == "N2"){
-            str = str.substring(0, str.length()-1);
-        }
-        str = str + signKey;
-
-        System.out.println("sgin data -->" + str);
-        String ret = MD5.md5Encode(str, "utf-8");
-        System.out.println("sgin value-->" + ret);
-        // String aaa
-        // ="encoding=utf-8&partnerId=111222333444555&random=dd8c0547a9f84e90ad8a94348b24c9fc&request_json=UjiMadoVstTz2BFqL6xLwwuRihkXGEUjltJRATATLperke1sdopahyMedGz1xhOOA3MYFHTZmDyFnWCew24jFAwQVmBxn59Q9kym23OrP2nCg72xF5Crpmcfk2eBre50btzoofwljwrGcnBZEf0Iy6sH53MsrT9je4JXhqs15VSrUIzIjJ7dWrS7GaWmqC5Whr+tnxzE7P3jkZsjSNYyglU3JK2uQaJtxTV4EdiUG0wUejW9h3C5RPAaquQ/WMbF70Fx+TIzug/clSficVZ9Yb6Lm8IG/fsNH1Xqw8fnilVcPf78ceOs/3ZCpIKru3suFUGoMieDCBbC3qDYT2JALQ==&service_type=pushOrder&version=2.1&99988888812121255544";
-        // System.out.println(MD5.md5Encode(aaa, "utf-8"));
-        return ret;
-    }
-
     /**
      * 测试系统接口 测试接口
      */
@@ -364,7 +327,6 @@ public class SnapPayTestMain {
         request.put("amount", "100");
 //        request.put("payType", "wxAPP");
 //        request.put("payType", "wxBarCodePay");
-        request.put("pay_type", "wxNativePay");
 //        request.put("payType", "wxJsPay");
 //        request.put("payType", "aliBarCodePay");
 //        request.put("payType", "aliJsPay");
@@ -374,21 +336,13 @@ public class SnapPayTestMain {
 //        request.put("payType", "aliPayN");
 //		request.put("payType", "jsPay");
 
+
         System.out.println("本机的IP = " + InetAddress.getLocalHost());
-        request.put("order_id", "demo" + System.currentTimeMillis()  + "");
-////        request.put("orderId", "2915139115291431513911529143");
-        request.put("business_time", "2019-05-07 15:35:00");
-        request.put("notify_url", notifyUrl);
-        request.put("frontUrl", "https://m.dianpayer.com/wechat/index.htm");
-        request.put("order_desc", "Echannell");
-        request.put("merchant_id", merchantId);
-//        request.put("sub_merchant_id", "900029000000354");
-////        request.put("openId", "oJxeIwIDaAuRRwr0_l0ZYKpbZL6w");
-        request.put("input_charset", "UTF-8");
-        request.put("partner", partnerId);
-        request.put("sign_type", "MD5");
-        request.put("version", version);
-        request.put("service", "push");
+
+//        wxNative(partnerId, merchantId, notifyUrl, version, request, "wxNativePay");
+        wxNative(partnerId, merchantId, notifyUrl, version, request, "aliPayN");
+//        wxBarCodePay(partnerId, merchantId, notifyUrl, version, request, "wxBarCodePay", "136361590402975215");
+//        wxJsPay(partnerId, merchantId, notifyUrl, version, request, "wxJsPay", "oVRQJ05dzTQ7PO6qlST36ibnw8X8");
 
       StringBuilder outSb = new StringBuilder();
         request(partnerId, url1, serviceType, encKey, signKey, version,
@@ -401,6 +355,37 @@ public class SnapPayTestMain {
         String res = outSb.toString();
         System.out.println("res:" + res);
 
+    }
+
+    private static void wxBarCodePay(String partnerId, String merchantId, String notifyUrl, String version, Map<String, String> request, String payType, String authCode) {
+
+        wxNative(partnerId, merchantId, notifyUrl, version, request, payType);
+        request.put("pay_type", payType);
+        request.put("authCode", authCode);
+
+    }
+
+    private static void wxJsPay(String partnerId, String merchantId, String notifyUrl, String version, Map<String, String> request, String payType, String openId) {
+
+        wxNative(partnerId, merchantId, notifyUrl, version, request, payType);
+        request.put("pay_type", payType);
+        request.put("openId", openId);
+
+    }
+
+        private static void wxNative(String partnerId, String merchantId, String notifyUrl, String version, Map<String, String> request, String payType) {
+        request.put("pay_type", payType);
+        request.put("order_id", "demo" + System.currentTimeMillis()  + "");
+        request.put("business_time", "2019-05-07 15:35:00");
+        request.put("notify_url", notifyUrl);
+        request.put("frontUrl", "https://m.dianpayer.com/wechat/index.htm");
+        request.put("order_desc", "Echannell");
+        request.put("merchant_id", merchantId);
+        request.put("input_charset", "UTF-8");
+        request.put("partner", partnerId);
+        request.put("sign_type", "MD5");
+        request.put("version", version);
+        request.put("service", "push");
     }
 
 

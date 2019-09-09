@@ -113,10 +113,10 @@ public class NewTestMain {
 
 
             //益鑫科技有限公司
-            partnerId = "900029000000354";
-            signKey = "h7jjcXPx7n2bmtK7L3mb";
-            encKey = "GFChiyGMZpNN8fiCr7WbsZSM";
-            merchantId = "900029000000354";
+//            partnerId = "900029000000354";
+//            signKey = "h7jjcXPx7n2bmtK7L3mb";
+//            encKey = "GFChiyGMZpNN8fiCr7WbsZSM";
+//            merchantId = "900029000000354";
 
 //            --2018060108538266383877610  1212740501201806011007410181
             // --100000000003451   余额支付  天津航空有限责任公司（B2C）  5fg94881da3bedb1fb1934bd1bab4de144ca4e0c9d1fgcg18c23d25add6756g2
@@ -135,10 +135,10 @@ public class NewTestMain {
 //            merchantId = "100000000080004";
 
             //900029000002554
-//            partnerId = "900029000002554";
-//            signKey = "CyVZmE9mtbNdhrStA8UH";
-//            encKey = "6E12Dhbq9M7Fk3MhyfMZ6dmm";
-//            merchantId = "900029000002554";
+            partnerId = "900029000002554";
+            signKey = "CyVZmE9mtbNdhrStA8UH";
+            encKey = "6E12Dhbq9M7Fk3MhyfMZ6dmm";
+            merchantId = "900029000002554";
 
             //新接口测试 N2
 //            partnerId = "100000000000000";
@@ -303,14 +303,6 @@ public class NewTestMain {
         // 通知商户交易
         //notifyMerchant(partnerId,signKey,encKey,merchantId,notifyUrl);
 
-        //3des解密
-        //String src ="lGc5cefVKR6Rww78L9BvpMdJsaqfxt1AHjUVwNAPwuZpyRKqLBENBrC7Yds47Sobd3dBu9DcWwJ3xk8E+qvcJAaOTNx1ooylEvvqbcTfqsO3Zqw5jY3tFfkhxJfzpBUJGj3Pg7xEwZ+lYIFPFS0S/R8vZDNO4f4uTK/X4Qd3a9GTzrSYdswNtNHnWUR+J7jrjWoi8YYXfrt88zj8IUCgo65l3ik8Up7dZsj9fu3QdOSCYoYGTNO/dacTGG/6tND/xo/QRGRV+fHzYY/RKPSiOfGH5zX3vVtsRhwicWydECoGVuN/TluUiQbbldycBQbf";
-        //decrypt(src,"piuyklj1209865kzJiop1286");
-
-        //3des加密
-        //{"merchantId":"900058400000169","merchantName":"pay","orderId":"20160515232303839945310001","amount":2,"orderNo":"2016051500012415","codeStr":"weixin://wxpay/bizpayurl?pr=VzPgpdw","tradeStatus":3,"errCode":"00","errCodeDes":"支付成功"};
-        //src = "{\"merchantId\":\"900058400000169\",\"merchantName\":\"pay\",\"orderId\":\"20160515232303839945310001\",\"amount\":2,\"orderNo\":\"2016051500012415\",\"codeStr\":\"weixin://wxpay/bizpayurl?pr=VzPgpdw\",\"tradeStatus\":3,\"errCode\":\"00\",\"errCodeDes\":\"支付成功\"}";
-        //encrypt(src,"piuyklj1209865kzJiop1286");
         //test();
         //计算签名
         //md5Encode("encoding=utf-8&errMsg=通知交易&partnerId=075582134702815&random=p1UoVK5B6V&respCode=00&result_json=lGc5cefVKR6Rww78L9BvpMdJsaqfxt1AHjUVwNAPwuZpyRKqLBENBrC7Yds47Sobd3dBu9DcWwJ3xk8E+qvcJAaOTNx1ooylEvvqbcTfqsO3Zqw5jY3tFfkhxJfzpBUJGj3Pg7xEwZ+lYIFPFS0S/R8vZDNO4f4uTK/X4Qd3a9GTzrSYdswNtNHnWUR+J7jrjWoi8YYXfrt88zj8IUCgo65l3ik8Up7dZsj9fu3QdOSCYoYGTNO/dacTGG/6tND/xo/QRGRV+fHzYY/RKPSiOfGH5zX3vVtsRhwicWydECoGVuN/TluUiQbbldycBQbf&service_type=notify&version=2.1&adhlfj2P1Lgjilmiilwr");
@@ -668,7 +660,7 @@ public class NewTestMain {
 //        agreementPay(partnerId, request, sParaTemp, "agreementPay", "EP0000000129");
 
         //  新网支-条码支付 收银台接口
-        barCodePay(partnerId, request, sParaTemp, "6226307700457293990");
+//        barCodePay(partnerId, request, sParaTemp, "6226307700457293990");
 
         //        request.put("mExtraMap", "{'subPayType':'directPay', 'name': '苏孙生', 'idNo':'350426199003043599', 'acc':'377155021512782', 'cvv':'427', 'validityDate':'1812', 'mobile':'13764610737', 'phoneNumber':'13764610737', 'bankCode': '305', 'feeRate': '0.55', 't0Fee':'100','smsCode':'412492', 'phoneToken':'ME20171117160919502497','settlementAcc':'6226097800343163','mchtFullName':'测试商户号','mchtName':'测试商户号','mchtAddress':'上海市普陀区江宁路111号','bankCode':'301','branchName':'上海建设银行北新泾支行','province':'上海市','city':'上海市', 'isCombine':'true'}");
 
@@ -688,23 +680,7 @@ public class NewTestMain {
 
 
         //网支系统退款 refund 老网支接口
-/*        sParaTemp.put("input_charset", "UTF-8");
-        sParaTemp.put("partner",partnerId);
-        sParaTemp.put("sign_type", "MD5");
-        sParaTemp.put("amount", "0.01");
-        sParaTemp.put("return_type", "json");
-        sParaTemp.put("out_trade_no",   getOrderNoByAtomic("") );
-//        sParaTemp.put("out_trade_no",  "1542865900721"); //System.currentTimeMillis()+ ""
-        sParaTemp.put("merchant_id", request.get("merchantId"));
-//        sParaTemp.put("orig_out_trade_no", "00370003378291801800605160187100"); //netBank
-//        sParaTemp.put("orig_out_trade_no", "2018060114615570");
-//        sParaTemp.put("orig_out_trade_no", "00370003378291801800605160187100");
-        ArrayList aa = new ArrayList();
-        aa.add("2018060114615570");
-        aa.add("00370003378291801800605160187100");
-        Random rnd = new Random();
-        int bb = rnd.nextInt(2);
-        sParaTemp.put("orig_out_trade_no", (String) aa.get(bb));*/
+        网支系统退款Refund老网支接口(partnerId, request, sParaTemp);
 
 
         //query
@@ -764,6 +740,26 @@ public class NewTestMain {
 //            }
 //        }
 
+    }
+
+    public static void 网支系统退款Refund老网支接口(String partnerId, Map<String, String> request, SortedMap<String, String> sParaTemp) {
+        sParaTemp.put("input_charset", "UTF-8");
+        sParaTemp.put("partner",partnerId);
+        sParaTemp.put("sign_type", "MD5");
+        sParaTemp.put("amount", "0.01");
+        sParaTemp.put("return_type", "json");
+        sParaTemp.put("out_trade_no",   getOrderNoByAtomic("") );
+//        sParaTemp.put("out_trade_no",  "1542865900721"); //System.currentTimeMillis()+ ""
+        sParaTemp.put("merchant_id", request.get("merchantId"));
+//        sParaTemp.put("orig_out_trade_no", "00370003378291801800605160187100"); //netBank
+//        sParaTemp.put("orig_out_trade_no", "2018060114615570");
+//        sParaTemp.put("orig_out_trade_no", "00370003378291801800605160187100");
+        ArrayList aa = new ArrayList();
+        aa.add("2018060114615570");
+        aa.add("00370003378291801800605160187100");
+        Random rnd = new Random();
+        int bb = rnd.nextInt(2);
+        sParaTemp.put("orig_out_trade_no", (String) aa.get(bb));
     }
 
     private static void barCodePay(String partnerId, Map<String, String> request, SortedMap<String, String> sParaTemp,  String authCode) {
